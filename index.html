@@ -2,10 +2,53 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8" />
-    <title></title>
+    <title>ChirpWeb</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 40px 0;
+            font-family: sans-serif;
+            background: #222;
+            color: #eee;
+        }
+        a {
+            color: #99f;
+        }
+        .main {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .chirp {
+            display: block;
+            height: 40px;
+            width: 300px;
+            font-size: 20px;
+            background: #ff2;
+            background-image: -webkit-linear-gradient(#ff1, #aa0);
+            border: 0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .chirp:hover {
+            background: #ee2;
+        }
+        .chirp span {
+            font-size: 80%;
+        }
+    </style>
 </head>
 <body>
     <script src="assets/chirp.js"></script>
-    <audio id="audio"></audio>
+    <h1>Data transmission using WebAudio</h1>
+    <div class="main">
+        <img src="http://chirp.io/assets/made_of_sound_2" width="300" />
+        <button class="chirp" onclick="chirp('srg00lgbif', '4c6u07sq')">♮<span>js</span></button>
+        <p>Original chirp audio:</p>
+        <audio controls>
+            <source src="http://chirp.io/chirps/made_of_sound_2.mp3" />
+            <source src="http://chirp.io/chirps/made_of_sound_2.ogg" />
+        </audio>
+        <p>Don't forget to check out <a href="http://chirp.io">chirp.io</a></p>
+    </div>
 </body>
 </html>
