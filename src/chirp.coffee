@@ -1,52 +1,61 @@
 
-###
-0 = 1760hz
-1 = 1864hz
-…
-v =10.5khz
+window.AudioContext or= (
+    window.webkitAudioContext or
+    window.mozAudioContext    or
+    window.msAudioContext     or
+    window.oAudioContext
+)
 
-0123456789abcdefghijklmnopqrstuv
-###
-
-Object.defineProperty Function::, 'cull',
-    value: (n) ->
-        fn = @
-        -> fn.apply @, Array::slice.call(arguments, 0, n)
+# Frequency table
+# ---------------
 
 semitone      = 1.05946311
 baseFrequency = 1760
 beepLength    = 87.2
 
-# 0..9a..v
-characters = ([0..9].concat [97..118].map String.fromCharCode.cull 1).join('')
+characters = '0123456789abcdefghijklmnopqrstuv'
 
 freqCodes = {}
 frequencies = []
 
+# Generate the frequencies that correspond to each code point.
 for char, i in characters
     freq = +(baseFrequency * Math.pow semitone, i).toFixed 3
     freqCodes[char] = freq
     frequencies[i] = freq
+    
 
-context = new webkitAudioContext()
+# Chirp Player
+# -------------
 
-oscillator = context.createOscillator()
-oscillator.type = 0 # sine wave
+context = new AudioContext()
 
-gainNode = context.createGainNode()
-gainNode.gain.value = 1
+window.chirp = (message, ecc) ->
 
-oscillator.connect gainNode
-gainNode.connect context.destination
+    # Chirps' chirps are composed of a 2 character identifier,
+    # followed by a 10-character payload and 8 characters of error correction
+    front_door = 'hj'
+    #message    = 'srg00lgbif'
+    #ecc        = '4c6u07sq'
 
-front_door = 'hj'
-message    = 'srg00lgbif'
-ecc        = '4c6u07sq'
+    chirp = front_door + message + ecc
 
-chirp = front_door + message + ecc
+    oscillator = context.createOscillator()
+    oscillator.type = 0 # sine wave
 
-for char, i in chirp
-    oscillator.frequency.setValueAtTime freqCodes[char], beepLength / 1000 * i
+    gainNode = context.createGainNode()
+    gainNode.gain.value = 0.5
 
-oscillator.start 0
-oscillator.stop beepLength / 1000 * (chirp.length + 1)
+    oscillator.connect gainNode
+    gainNode.connect context.destination
+
+    now = context.currentTime
+
+    # Pre-program the oscillator
+    for char, i in chirp
+        oscillator.frequency.setValueAtTime freqCodes[char], now + (beepLength / 1000 * i)
+
+    # Play!
+    oscillator.start now
+    # And don't forget to stop
+    oscillator.stop now + (beepLength / 1000 * (chirp.length + 1))
