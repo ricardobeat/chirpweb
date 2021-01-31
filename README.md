@@ -48,7 +48,6 @@ localhost:80
 ```
 
 # Contributors
-[![](https://opencollective.com/chirpweb/contributors.svg?width=890&button=false)](https://github.com/ricardobeat/chirpweb/graphs/contributors)
 [![](https://contrib.rocks/image?repo=ricardobeat/chirpweb)](https://github.com/ricardobeat/chirpweb/graphs/contributors)
 
 Made with [contributors-img](https://contrib.rocks).
