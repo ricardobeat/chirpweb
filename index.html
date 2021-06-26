@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
     <meta charset="UTF-8" />
-    <title>ChirpWeb</title>
+    <title>ChirpWeb🐥</title>
     <style>
         body {
             text-align: center;
@@ -11,13 +12,18 @@
             background: #222;
             color: #eee;
         }
+
         a {
             color: #99f;
+        }
+        p{
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
         .main {
             max-width: 300px;
             margin: 0 auto;
         }
+
         .chirp {
             display: block;
             height: 40px;
@@ -29,26 +35,59 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
         .chirp:hover {
             background: #ee2;
         }
+
         .chirp span {
             font-size: 80%;
         }
+        #input_fields{
+            flex: content;
+            padding-top: 10px;
+        }
+
+        .input-box{
+            border-radius: 5px;
+            margin: 3px;
+            background-color: rgb(245, 237, 237);
+        }
+        #generate-button{
+            border-radius: 5px;
+            margin-top: 10px;
+            background-image: -webkit-linear-gradient(rgb(255, 239, 17),#aa0);
+        }
+
     </style>
 </head>
+
 <body>
     <script src="assets/chirp.js"></script>
     <h1>Data transmission using WebAudio</h1>
     <div class="main">
-        <img src="http://chirp.io/assets/made_of_sound_2" width="300" />
+        <img src="data/download.png" width="300" />
         <button class="chirp" onclick="chirp('srg00lgbif', '4c6u07sq')">♮<span>js</span></button>
+
         <p>Original chirp audio:</p>
         <audio controls>
-            <source src="http://chirp.io/chirps/made_of_sound_2.mp3" />
-            <source src="http://chirp.io/chirps/made_of_sound_2.ogg" />
+            <source src="data/made_of_sound_2.mp3" />
+            <!-- source i found a copy through wayback machine! https://web.archive.org/web/20140221005732/http://chirp.io/chirps/made_of_sound_2.mp3  -->
         </audio>
-        <p>Don't forget to check out <a href="http://chirp.io">chirp.io</a></p>
+        
+        <div id="input_fields">
+            <p>Genearte your own chirp!</p>
+            <p>Example values:<br> srg00lgbif and 4c6u07sq</p>
+            <input type="text" id="message-field" class="input-box" placeholder="Example: srg00lgbif">
+            <input type="text" id="ecc-field" class="input-box" placeholder="Example: 4c6u07sq">
+            <br>
+            <!--Generate button: grab the values from the two input boxes using getElementById and identify by id message-field and ecc-field additionally remove any dangling white space with .trim() -->
+            <button  id="generate-button" onclick="chirp(document.getElementById('message-field').value.trim(), document.getElementById('ecc-field').value.trim())" type="submit">Generate</button>
+        </div>
+        <p>Don't forget to check out <a href="http://chirp.io">chirp.io</a> <br>Note: sadly they were acquired by
+            sonos
+            and shutdown :(</p>
     </div>
 </body>
+
 </html>

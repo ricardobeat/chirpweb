@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  chirpweb:
+    image: chirpweb
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 1199:80
