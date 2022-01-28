@@ -5,7 +5,7 @@ Chirp chirp
 
 ## created by ricardobeat
 ![](2021-01-30-21-33-46.png)
-### This is an attempt to implement the chirp.io protocol ([http://chirp.io/tech/]) using the WebAudio API.
+### This is an attempt to implement the chirp.io protocol ([http://chirp.io/tech/](https://web.archive.org/web/20121020144938/http://chirp.io/tech/)) using the WebAudio API.
 
 Currently it can generate the tones and successfully send data to a chirp receiver,
 but only using pre-generated message data from chirp.io.
