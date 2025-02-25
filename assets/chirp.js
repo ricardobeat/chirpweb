@@ -1,5 +1,5 @@
 (function() {
-  var baseFrequency, beepLength, char, characters, context, freq, freqCodes, frequencies, i, semitone, _i, _len;
+  var baseFrequency, beepLength, char, characters, context, freq, freqCodes, frequencies, i, j, len, semitone;
 
   window.AudioContext || (window.AudioContext = window.webkitAudioContext || window.mozAudioContext || window.msAudioContext || window.oAudioContext);
 
@@ -15,7 +15,7 @@
 
   frequencies = [];
 
-  for (i = _i = 0, _len = characters.length; _i < _len; i = ++_i) {
+  for (i = j = 0, len = characters.length; j < len; i = ++j) {
     char = characters[i];
     freq = +(baseFrequency * Math.pow(semitone, i)).toFixed(3);
     freqCodes[char] = freq;
@@ -25,17 +25,17 @@
   context = new AudioContext();
 
   window.chirp = function(message, ecc) {
-    var chirp, front_door, gainNode, now, oscillator, _j, _len1;
+    var chirp, front_door, gainNode, k, len1, now, oscillator;
     front_door = 'hj';
     chirp = front_door + message + ecc;
     oscillator = context.createOscillator();
     oscillator.type = 0;
-    gainNode = context.createGainNode();
+    gainNode = context.createGain();
     gainNode.gain.value = 0.5;
     oscillator.connect(gainNode);
     gainNode.connect(context.destination);
     now = context.currentTime;
-    for (i = _j = 0, _len1 = chirp.length; _j < _len1; i = ++_j) {
+    for (i = k = 0, len1 = chirp.length; k < len1; i = ++k) {
       char = chirp[i];
       oscillator.frequency.setValueAtTime(freqCodes[char], now + (beepLength / 1000 * i));
     }
