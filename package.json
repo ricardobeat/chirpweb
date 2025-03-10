@@ -1,0 +1,23 @@
+{
+  "name": "chirpweb",
+  "version": "1.0.0",
+  "description": "Chirp chirp ===========",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricardobeat/chirpweb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ricardobeat/chirpweb/issues"
+  },
+  "homepage": "https://github.com/ricardobeat/chirpweb#readme",
+  "dependencies": {
+    "coffeescript": "^2.5.1"
+  }
+}
